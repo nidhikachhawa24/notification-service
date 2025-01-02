@@ -104,9 +104,9 @@ public class Msg91SmsProviderImpl implements ISmsProvider {
       if (validateSettings(mobileNumber, smsText)) {
         String tempMobileNumber = removePlusFromMobileNumber(mobileNumber);
 
-        logger.debug("Msg91SmsProvider - after removePlusFromMobileNumber " + tempMobileNumber);
+        logger.info("Msg91SmsProvider - after removePlusFromMobileNumber " + tempMobileNumber);
         path = baseUrl + postUrl;
-        logger.debug("Msg91SmsProvider -Executing request - " + path);
+        logger.info("Msg91SmsProvider -Executing request - " + path);
 
         HttpPost httpPost = new HttpPost(path);
 
@@ -133,6 +133,7 @@ public class Msg91SmsProviderImpl implements ISmsProvider {
                 new ProviderDetails(sender, smsRoute, countryCode, 1, smsList);
 
         String providerDetailsString = JsonUtil.toJson(providerDetails);
+        logger.info("providerDetailsString - " + providerDetailsString);
 
         if (!JsonUtil.isStringNullOREmpty(providerDetailsString)) {
           logger.debug("Msg91SmsProvider - Body - " + providerDetailsString);
